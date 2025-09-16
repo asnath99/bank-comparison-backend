@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "prettier"
+  ],
+  "plugins": ["node"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "script"
+  },
+  "rules": {
+    "no-unused-vars": ["error", { "args": "none", "ignoreRestSiblings": true }],
+    "no-console": "off", 
+    "node/no-unsupported-features/es-syntax": "off",
+    "node/no-missing-import": "off",
+    "node/no-unpublished-import": "off"
+  }
+}
