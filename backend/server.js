@@ -9,6 +9,7 @@ const bankcardRoutes = require('./routes/bankcardRoutes');
 const bankproductRoutes = require('./routes/bankproductRoutes');
 const comparisonRoutes = require('./routes/comparisonRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const comparisonCriteriaRoutes = require('./routes/admin/comparisonCriteriaRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api/bankcards', bankcardRoutes);
 app.use('/api/bankproducts', bankproductRoutes);
 app.use('/api/comparison', comparisonRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/admin/comparison/criteria', comparisonCriteriaRoutes);
 
 //Route test
 app.get('/', (req, res) => {

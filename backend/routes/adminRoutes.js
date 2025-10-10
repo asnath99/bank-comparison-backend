@@ -8,7 +8,7 @@ const router = express.Router();
 // Routes publiques
 router.post('/login', validateAdmin, adminController.login);
 
-// Routes d'administration (requièrent authentification)
+// Routes d'administration 
 router.post('/users', requireAdmin, authorizeRoles(['super-admin']), validateAdmin, adminController.createAdmin);
 router.get('/users', requireAdmin, adminController.getAllAdmins);
 router.get('/users/:id', requireAdmin, adminController.getAdminById);
@@ -17,5 +17,8 @@ router.delete('/users/:id', requireAdmin, authorizeRoles(['super-admin']), admin
 router.patch('/users/:id/reactivate', requireAdmin, authorizeRoles(['super-admin']), adminController.reactivateAdmin);
 router.delete('/users/:id/permanent', requireAdmin, authorizeRoles(['super-admin']), adminController.permanentlyDeleteAdmin);
 router.get('/logs', requireAdmin, adminController.getLogs);
+
+router.use('/comparison/rules', require('./admin/comparisonRuleRoutes'));
+router.use('/comparison/criteria', require('./admin/comparisonCriteriaRoutes'));
 
 module.exports = router;
