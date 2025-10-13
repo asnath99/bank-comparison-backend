@@ -1,9 +1,19 @@
 'use strict';
 const ComparisonEngine = require('../service/comparison/ComparisonEngine');
+const comparisonCriteriaService = require('../service/comparisonCriteria.service.js');
 const { handleError } = require('../utils/errorHandler');
 
 class ComparisonController {
-static async compare(req, res, next) {
+  static async getPublicCriteria(req, res, next) {
+    try {
+      const criteria = await comparisonCriteriaService.getActiveCriteria();
+      return res.json({ success: true, data: criteria });
+    } catch (error) {
+      handleError(res, error);
+    }
+  }
+
+  static async compare(req, res, next) {
   try {
     const { criteria = [], bankIds = [], mode = 'score', filters = {}, budgets = {} } = req.body || {};
     
