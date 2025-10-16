@@ -44,11 +44,10 @@ export const LoginForm = ({ onSubmit, isSubmitting }: LoginFormProps) => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
+                        name="email"
+                        render={({ field }: { field: any }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>                  <FormControl>
                     <Input placeholder="admin@exemple.com" {...field} />
                   </FormControl>
                   <FormMessage />
@@ -57,11 +56,10 @@ export const LoginForm = ({ onSubmit, isSubmitting }: LoginFormProps) => {
             />
             <FormField
               control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mot de passe</FormLabel>
-                  <FormControl>
+                        name="password"
+                        render={({ field }: { field: any }) => (
+                          <FormItem>
+                            <FormLabel>Mot de passe</FormLabel>                  <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
                   <FormMessage />

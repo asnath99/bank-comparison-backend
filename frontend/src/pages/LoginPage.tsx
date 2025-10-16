@@ -2,7 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { loginAdmin } from '@/features/admin/api';
-import { LoginForm, LoginValues } from '@/features/admin/components/LoginForm';
+import type { LoginValues } from '@/features/admin/components/LoginForm';
+import { LoginForm } from '@/features/admin/components/LoginForm';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 

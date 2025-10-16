@@ -1,21 +1,33 @@
-
+const bcrypt = require('bcryptjs');
 const { AdminUser } = require('./models');
-const bcrypt = require('bcrypt');
+require('dotenv').config();
 
-async function createAdmin() {
-  try {
-    const hashedPassword = await bcrypt.hash('wili1234', 10);
-    const admin = await AdminUser.create({
-      email: 'wili@test.com',
-      password_hash: hashedPassword,
-      role: 'admin'
-    });
-    console.log('Admin créé :', admin.email);
-    process.exit(0);
-  } catch (err) {
-    console.error('Erreur :', err.message);
-    process.exit(1);
+(async () => {
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!password) {
+    console.error('Erreur : Le mot de passe doit être fourni via la variable d\'environnement ADMIN_PASSWORD.');
+    throw new Error('Mot de passe administrateur manquant.');
   }
-}
 
-createAdmin();
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const [_admin, created] = await AdminUser.findOrCreate({
+      where: { email: 'admin@dokal.africa' },
+      defaults: {
+        password_hash: hashedPassword,
+        role: 'super_admin',
+        is_active: true,
+      },
+    });
+
+    if (created) {
+      console.log('Utilisateur administrateur "admin@dokal.africa" créé avec succès.');
+    } else {
+      console.log('Utilisateur administrateur "admin@dokal.africa" existe déjà.');
+    }
+  } catch (error) {
+    console.error('Erreur lors de la création de l\'administrateur:', error);
+    throw new Error('Échec de la création de l\'administrateur.');
+  }
+})();

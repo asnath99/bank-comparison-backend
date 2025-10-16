@@ -7,8 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"; // Assuming this component exists
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/alert-dialog';
 
 interface ConfirmationDialogProps {
   isOpen: boolean;

@@ -1,8 +1,8 @@
+import type { AdminBank, AdminUser } from './types';
+import type { BankFormValues } from './components/AddBankForm';
+import type { LoginValues } from './components/LoginForm';
+import type { UserFormValues } from './components/AddUserForm';
 import { api } from '@/lib/axios';
-import { AdminBank, AdminUser } from './types';
-import { BankFormValues } from './components/AddBankForm';
-import { LoginValues } from './components/LoginForm';
-import { UserFormValues } from './components/AddUserForm'; // To be created
 
 // Bank Management
 export const getAdminBanks = async (): Promise<AdminBank[]> => {
@@ -26,6 +26,18 @@ export const disableAdminBank = async (id: number): Promise<void> => {
 
 export const permanentlyDeleteAdminBank = async (id: number): Promise<void> => {
   await api.delete(`/banks/${id}/permanent`);
+};
+
+export const deactivateAdminBank = async (id: number): Promise<void> => {
+  await api.patch(`/banks/${id}/deactivate`);
+};
+
+export const reactivateAdminBank = async (id: number): Promise<void> => {
+  await api.patch(`/banks/${id}/reactivate`);
+};
+
+export const deactivateAdminUser = async (id: number): Promise<void> => {
+  await api.patch(`/admin/users/${id}/deactivate`);
 };
 
 // Auth

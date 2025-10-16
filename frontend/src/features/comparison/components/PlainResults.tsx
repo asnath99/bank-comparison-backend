@@ -1,51 +1,34 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import type { PlainResponse, CriteriaKey } from "../types";
+'use client'
+
+import type { PlainResultV2 } from '../types';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface PlainResultsProps {
-  response: PlainResponse;
-  criteria: CriteriaKey[];
-  accountType?: string;
+  results: PlainResultV2
 }
 
-const PlainResults = ({ response }: PlainResultsProps) => {
-  const { per_criterion, criteria_used } = response;
-
-  // We will only render the V2 block format for now
-  if (!per_criterion || !Array.isArray(per_criterion) || !('rows' in per_criterion[0])) {
-    return <p>Format de données non supporté.</p>;
-  }
-
+export function PlainResults({ results }: PlainResultsProps) {
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-bold">Résultats Détaillés</h2>
-      {per_criterion.map(block => (
+    <div className="space-y-8">
+      {results.blocks.map((block) => (
         <Card key={block.key}>
           <CardHeader>
-            <CardTitle>{block.label || block.key}</CardTitle>
+            <CardTitle>{block.label}</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Banque</TableHead>
-                  <TableHead>Disponible</TableHead>
-                  <TableHead>Valeur</TableHead>
-                  <TableHead>Notes</TableHead>
+                  <TableHead className="text-right">Valeur</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {block.rows.map(row => (
-                  <TableRow key={row.bank.id}>
-                    <TableCell className="font-medium">{row.bank.name}</TableCell>
-                    <TableCell>
-                      <Badge variant={row.available ? "default" : "destructive"}>
-                        {row.available ? 'Oui' : 'Non'}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{row.display || 'N/A'}</TableCell>
-                    <TableCell>{row.notes?.join(', ') || '-'}</TableCell>
+                {block.rows.map((row) => (
+                  <TableRow key={row.bank_id}>
+                    <TableCell>{results.banks[row.bank_id]?.name ?? 'N/A'}</TableCell>
+                    <TableCell className="text-right">{row.value}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -54,7 +37,5 @@ const PlainResults = ({ response }: PlainResultsProps) => {
         </Card>
       ))}
     </div>
-  );
-};
-
-export default PlainResults;
+  )
+}

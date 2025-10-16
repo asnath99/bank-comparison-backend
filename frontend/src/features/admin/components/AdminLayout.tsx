@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Bell, Home, Package2, Users, LineChart, Settings, Banknote } from 'lucide-react';
+import { Banknote, Bell, Home, Package2, Settings, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 

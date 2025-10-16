@@ -45,7 +45,7 @@ export const AddBankForm = ({ onSubmit, isSubmitting }: AddBankFormProps) => {
         <FormField
           control={form.control}
           name="name"
-          render={({ field }) => (
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel>Nom de la banque</FormLabel>
               <FormControl>

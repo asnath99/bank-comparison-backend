@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const userFormSchema = z.object({
   email: z.string().email({ message: 'Veuillez saisir une adresse e-mail valide.' }),
   password: z.string().min(8, { message: 'Le mot de passe doit contenir au moins 8 caractères.' }),
-  role: z.enum(['admin', 'super-admin'], { required_error: 'Le rôle est requis.' }),
+  role: z.enum(['admin', 'super-admin'], { message: 'Le rôle est requis.' }),
 });
 
 export type UserFormValues = z.infer<typeof userFormSchema>;
@@ -38,7 +38,7 @@ export const AddUserForm = ({ onSubmit, isSubmitting }: AddUserFormProps) => {
         <FormField
           control={form.control}
           name="email"
-          render={({ field }) => (
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
@@ -83,7 +83,7 @@ export const AddUserForm = ({ onSubmit, isSubmitting }: AddUserFormProps) => {
           )}
         />
         <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? 'Création en cours...' : 'Créer l'utilisateur'}
+          {isSubmitting ? "Création en cours..." : "Créer l'utilisateur"}
         </Button>
       </form>
     </Form>

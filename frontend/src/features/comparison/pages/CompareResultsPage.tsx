@@ -14,7 +14,7 @@ import type {
   PlainResponse,
 } from '../types';
 import ResultsSummaryBar from '../components/ResultsSummaryBar';
-import PlainResults from '../components/PlainResults';
+import { PlainResults } from '../components/PlainResults';
 import ScoreResults from '../components/ScoreResults';
 import UnknownMode from '../components/UnknownMode';
 
@@ -104,11 +104,7 @@ export default function CompareResultsPage() {
           isScoreResponse(data) ? (
             <ScoreResults response={data} criteria={selection.criteria as CriteriaKey[]} />
           ) : isPlainResponse(data) ? (
-            <PlainResults
-              response={data}
-              criteria={selection.criteria as CriteriaKey[]}
-              accountType={selection.accountType}
-            />
+            <PlainResults results={data as any} />
           ) : (
             <UnknownMode mode={(data as any)?.mode} payload={data} />
           )

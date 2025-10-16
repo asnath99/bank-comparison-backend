@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { AdminBank } from '../types';
+import type { AdminBank } from '../types';
 
 const bankFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -47,7 +47,7 @@ export const EditBankForm = ({ bank, onSubmit, isSubmitting }: EditBankFormProps
         <FormField
           control={form.control}
           name="name"
-          render={({ field }) => (
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel>Nom de la banque</FormLabel>
               <FormControl>
