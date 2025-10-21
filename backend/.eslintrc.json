@@ -15,7 +15,7 @@
     "sourceType": "script"
   },
   "rules": {
-    "no-unused-vars": ["error", { "args": "none", "ignoreRestSiblings": true }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^", "varsIgnorePattern": "^" }],
     "no-console": "off", 
     "node/no-unsupported-features/es-syntax": "off",
     "node/no-missing-import": "off",

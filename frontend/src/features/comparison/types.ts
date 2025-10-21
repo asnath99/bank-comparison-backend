@@ -89,3 +89,15 @@ export type ScoreResponse = {
 };
 
 export type ComparisonResponse = PlainResponse | ScoreResponse;
+
+export type PlainResultV2 = {
+  blocks: Array<{
+    key: CriteriaKey;
+    label: string;
+    rows: Array<{
+      bank_id: number;
+      value: string | number | null;
+    }>;
+  }>;
+  banks: Record<number, Bank>;
+};

@@ -1,13 +1,18 @@
-// models/ComparisonRule.js
+
 'use strict';
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   const ComparisonRule = sequelize.define('ComparisonRule', {
+  
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     criteria_key: {
       type: DataTypes.STRING,
