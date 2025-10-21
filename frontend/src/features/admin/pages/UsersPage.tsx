@@ -152,7 +152,7 @@ const UsersPage = () => {
           onClose={() => setDeletingUser(null)}
           onConfirm={() => permanentDeleteUser(deletingUser.id)}
           title="Êtes-vous absolument certain ?"
-          description={`Cette action est irréversible. Cela supprimera définitivement l\'utilisateur "${deletingUser.email}".`}
+          description={`Cette action est irréversible. Cela supprimera définitivement l'utilisateur "${deletingUser.email}".`}
           isConfirming={isDeletingPermanently}
           confirmText="Oui, supprimer définitivement"
         />

@@ -54,6 +54,10 @@ export default function CompareResultsPage() {
 
   const { mutate, data, isPending, isError, error } = useComparison();
 
+  // Serialize complex objects for useEffect dependencies
+  const criteriaJson = JSON.stringify(selection.criteria);
+  const budgetsJson = JSON.stringify(selection.budgets);
+
   useEffect(() => {
     let filters: Filters | undefined;
     if (selection.accountType && selection.criteria.includes('account_monthly_fee')) {
@@ -72,15 +76,18 @@ export default function CompareResultsPage() {
       ...(hasBudgets ? { budgets: selection.budgets } : {}),
     };
 
+    // eslint-disable-next-line no-console
     if (import.meta.env.DEV) console.debug('POST /comparison payload', payload);
     mutate(payload);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     rawMode,
     selection.bankIds,
     selection.accountType,
-    JSON.stringify(selection.criteria),
-    JSON.stringify(selection.budgets),
+    criteriaJson,
+    budgetsJson,
+    mutate,
+    selection.criteria,
+    selection.budgets,
   ]);
 
   return (
