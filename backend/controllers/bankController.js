@@ -146,6 +146,19 @@ const permanentlyDeleteBank = async (req, res) => {
   }
 };
 
+const getAllBanksForAdmin = async (req, res) => {
+  try {
+    const banks = await bankService.getAllBanksForAdmin();
+    res.status(200).json({
+      success: true,
+      data: banks,
+      count: banks.length
+    });
+  } catch (error) {
+    handleError(res, error);
+  }
+};
+
 
 module.exports = {
   getAllBanks,
@@ -155,6 +168,7 @@ module.exports = {
   disableBank,
   reactivateBank,
   searchBanks,
-  permanentlyDeleteBank
+  permanentlyDeleteBank,
+  getAllBanksForAdmin
 };
 

@@ -25,6 +25,7 @@ app.use('/api/bankproducts', bankproductRoutes);
 app.use('/api/comparison', comparisonRoutes);
 app.use('/api/admin', adminRoutes);
 
+
 //Route test
 app.get('/', (req, res) => {
     res.send("hellodd");

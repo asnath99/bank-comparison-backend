@@ -11,6 +11,7 @@ router.get('/search', controller.searchBanks);
 router.get('/:id', controller.getBankById);
 
 // Routes d'administration
+router.get('/all/admin', requireAdmin, authorizeRoles(['admin', 'super-admin']), controller.getAllBanksForAdmin);
 router.post('/', requireAdmin, authorizeRoles(['admin', 'super-admin']), validateBank, controller.createBank);
 router.put('/:id', requireAdmin, authorizeRoles(['admin', 'super-admin']), validateBank, controller.updateBank);
 router.delete('/:id', requireAdmin, authorizeRoles(['admin', 'super-admin']), controller.disableBank);

@@ -14,7 +14,16 @@ class BankService extends BaseService {
    */
   async getAllBanks() {
     return await this.getAll({
-      //where: { is_active: true },
+      where: { is_active: true },
+      order: [['name', 'ASC']]
+    });
+  }
+
+  /**
+   * Lister toutes les banques pour l'admin (actives et inactives)
+   */
+  async getAllBanksForAdmin() {
+    return await this.getAll({
       order: [['name', 'ASC']]
     });
   }
