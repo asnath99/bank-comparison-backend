@@ -16,8 +16,14 @@ import AccountDetailPage from '../features/bank-accounts/pages/AccountDetailPage
 import CardDetailPage from '../features/bank-cards/pages/CardDetailPage';
 
 import AdminLayout from '@/features/admin/components/AdminLayout';
+import AdminDashboardPage from '@/features/admin/pages/DashboardPage';
 import AdminBanksPage from '@/features/admin/pages/BanksPage';
 import AdminUsersPage from '@/features/admin/pages/UsersPage';
+import AdminAccountsPage from '@/features/admin/pages/AccountsPage';
+import AdminCardsPage from '@/features/admin/pages/CardsPage';
+import AdminProductsPage from '@/features/admin/pages/ProductsPage';
+import AdminCriteriaPage from '@/features/admin/pages/CriteriaPage';
+import AdminRulesPage from '@/features/admin/pages/RulesPage';
 
 const router = createBrowserRouter([
   {
@@ -44,9 +50,15 @@ const router = createBrowserRouter([
       {
         element: <AdminLayout />,
         children: [
-          { index: true, element: <Navigate to="banks" replace /> },
+          { index: true, element: <Navigate to="dashboard" replace /> },
+          { path: 'dashboard', element: <AdminDashboardPage /> },
           { path: 'banks', element: <AdminBanksPage /> },
+          { path: 'accounts', element: <AdminAccountsPage /> },
+          { path: 'cards', element: <AdminCardsPage /> },
+          { path: 'products', element: <AdminProductsPage /> },
           { path: 'users', element: <AdminUsersPage /> },
+          { path: 'criteria', element: <AdminCriteriaPage /> },
+          { path: 'rules', element: <AdminRulesPage /> },
         ]
       }
     ]
