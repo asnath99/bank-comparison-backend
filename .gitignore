@@ -26,3 +26,6 @@ Thumbs.db
 frontend/.next/
 frontend/.cache/
 frontend/.env.local
+
+CLAUDE.md
+.claude/
