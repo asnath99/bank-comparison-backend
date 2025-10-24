@@ -111,7 +111,7 @@ export default function CompareResultsPage() {
           isScoreResponse(data) ? (
             <ScoreResults response={data} criteria={selection.criteria as CriteriaKey[]} />
           ) : isPlainResponse(data) ? (
-            <PlainResults results={data as any} />
+            <PlainResults results={data} />
           ) : (
             <UnknownMode mode={(data as any)?.mode} payload={data} />
           )
