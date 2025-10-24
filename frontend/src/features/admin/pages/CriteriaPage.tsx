@@ -61,7 +61,7 @@ const CriteriaPage = () => {
   const { data: criteria, isLoading } = useQuery({
     queryKey: ['adminCriteria'],
     queryFn: async () => {
-      const response = await axios.get('/api/admin/comparison/criteria');
+      const response = await axios.get('/admin/comparison/criteria');
       return response.data.data as ComparisonCriteria[];
     },
   });
@@ -72,7 +72,7 @@ const CriteriaPage = () => {
         ...values,
         data_mapping: JSON.parse(values.data_mapping),
       };
-      await axios.post('/api/admin/comparison/criteria', payload);
+      await axios.post('/admin/comparison/criteria', payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminCriteria'] });
@@ -86,7 +86,7 @@ const CriteriaPage = () => {
         ...values,
         data_mapping: JSON.parse(values.data_mapping),
       };
-      await axios.put(`/api/admin/comparison/criteria/${id}`, payload);
+      await axios.put(`/admin/comparison/criteria/${id}`, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminCriteria'] });
@@ -97,7 +97,7 @@ const CriteriaPage = () => {
   const { mutate: toggleCriteria } = useMutation({
     mutationFn: async (criteria: ComparisonCriteria) => {
       const endpoint = criteria.is_active ? 'deactivate' : 'reactivate';
-      await axios.patch(`/api/admin/comparison/criteria/${criteria.id}/${endpoint}`);
+      await axios.patch(`/admin/comparison/criteria/${criteria.id}/${endpoint}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminCriteria'] });
@@ -106,7 +106,7 @@ const CriteriaPage = () => {
 
   const { mutate: deleteCriteria, isPending: isDeleting } = useMutation({
     mutationFn: async (id: number) => {
-      await axios.delete(`/api/admin/comparison/criteria/${id}/permanent`);
+      await axios.delete(`/admin/comparison/criteria/${id}/permanent`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminCriteria'] });

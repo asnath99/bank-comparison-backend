@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAdminBanks } from '../api';
-import axios from '@/lib/axios';
+import { api } from '@/lib/axios';
 
 interface DashboardStats {
   banks: { total: number; active: number };
@@ -34,12 +34,12 @@ const DashboardPage = () => {
     queryFn: async () => {
       // Fetch all stats in parallel
       const [accountsRes, cardsRes, productsRes, usersRes, criteriaRes, rulesRes] = await Promise.all([
-        axios.get('/api/bankaccounts'),
-        axios.get('/api/bankcards'),
-        axios.get('/api/bankproducts'),
-        axios.get('/api/admin/users'),
-        axios.get('/api/admin/comparison/criteria'),
-        axios.get('/api/admin/comparison/rules'),
+        api.get('/bankaccounts'),
+        api.get('/bankcards'),
+        api.get('/bankproducts'),
+        api.get('/admin/users'),
+        api.get('/admin/comparison/criteria'),
+        api.get('/admin/comparison/rules'),
       ]);
 
       return {

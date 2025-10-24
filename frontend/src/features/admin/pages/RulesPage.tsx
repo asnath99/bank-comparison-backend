@@ -62,7 +62,7 @@ const RulesPage = () => {
   const { data: criteria } = useQuery({
     queryKey: ['adminCriteria'],
     queryFn: async () => {
-      const response = await axios.get('/api/admin/comparison/criteria');
+      const response = await axios.get('/admin/comparison/criteria');
       return response.data.data;
     },
   });
@@ -70,7 +70,7 @@ const RulesPage = () => {
   const { data: rules, isLoading } = useQuery({
     queryKey: ['adminRules'],
     queryFn: async () => {
-      const response = await axios.get('/api/admin/comparison/rules');
+      const response = await axios.get('/admin/comparison/rules');
       return response.data.data as ComparisonRule[];
     },
   });
@@ -81,7 +81,7 @@ const RulesPage = () => {
         ...values,
         rule_definition: JSON.parse(values.rule_definition),
       };
-      await axios.post('/api/admin/comparison/rules', payload);
+      await axios.post('/admin/comparison/rules', payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminRules'] });
@@ -95,7 +95,7 @@ const RulesPage = () => {
         ...values,
         rule_definition: JSON.parse(values.rule_definition),
       };
-      await axios.put(`/api/admin/comparison/rules/${id}`, payload);
+      await axios.put(`/admin/comparison/rules/${id}`, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminRules'] });
@@ -106,7 +106,7 @@ const RulesPage = () => {
   const { mutate: toggleRule } = useMutation({
     mutationFn: async (rule: ComparisonRule) => {
       const endpoint = rule.is_active ? 'deactivate' : 'reactivate';
-      await axios.patch(`/api/admin/comparison/rules/${rule.id}/${endpoint}`);
+      await axios.patch(`/admin/comparison/rules/${rule.id}/${endpoint}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminRules'] });
@@ -115,7 +115,7 @@ const RulesPage = () => {
 
   const { mutate: deleteRule, isPending: isDeleting } = useMutation({
     mutationFn: async (id: number) => {
-      await axios.delete(`/api/admin/comparison/rules/${id}/permanent`);
+      await axios.delete(`/admin/comparison/rules/${id}/permanent`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminRules'] });

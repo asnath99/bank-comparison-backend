@@ -66,14 +66,14 @@ const AccountsPage = () => {
   const { data: accounts, isLoading } = useQuery({
     queryKey: ['adminAccounts'],
     queryFn: async () => {
-      const response = await axios.get('/api/bankaccounts');
+      const response = await axios.get('/bankaccounts');
       return response.data.data as BankAccount[];
     },
   });
 
   const { mutate: createAccount, isPending: isCreating } = useMutation({
     mutationFn: async (values: AccountFormValues) => {
-      await axios.post('/api/bankaccounts', values);
+      await axios.post('/bankaccounts', values);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminAccounts'] });

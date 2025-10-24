@@ -67,14 +67,14 @@ const CardsPage = () => {
   const { data: cards, isLoading } = useQuery({
     queryKey: ['adminCards'],
     queryFn: async () => {
-      const response = await axios.get('/api/bankcards');
+      const response = await axios.get('/bankcards');
       return response.data.data as BankCard[];
     },
   });
 
   const { mutate: createCard, isPending: isCreating } = useMutation({
     mutationFn: async (values: CardFormValues) => {
-      await axios.post('/api/bankcards', values);
+      await axios.post('/bankcards', values);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminCards'] });

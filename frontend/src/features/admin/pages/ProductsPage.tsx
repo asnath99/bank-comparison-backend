@@ -64,7 +64,7 @@ const ProductsPage = () => {
   const { data: products, isLoading } = useQuery({
     queryKey: ['adminProducts'],
     queryFn: async () => {
-      const response = await axios.get('/api/bankproducts');
+      const response = await axios.get('/bankproducts');
       return response.data.data as BankProduct[];
     },
   });
@@ -75,7 +75,7 @@ const ProductsPage = () => {
         ...values,
         details: JSON.parse(values.details || '{}'),
       };
-      await axios.post('/api/bankproducts', payload);
+      await axios.post('/bankproducts', payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminProducts'] });
@@ -89,7 +89,7 @@ const ProductsPage = () => {
         ...values,
         details: JSON.parse(values.details || '{}'),
       };
-      await axios.put(`/api/bankproducts/${id}`, payload);
+      await axios.put(`/bankproducts/${id}`, payload);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminProducts'] });
@@ -99,7 +99,7 @@ const ProductsPage = () => {
 
   const { mutate: deleteProduct, isPending: isDeleting } = useMutation({
     mutationFn: async (id: number) => {
-      await axios.delete(`/api/bankproducts/${id}/permanent`);
+      await axios.delete(`/bankproducts/${id}/permanent`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminProducts'] });

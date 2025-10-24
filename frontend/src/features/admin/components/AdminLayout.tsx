@@ -33,7 +33,7 @@ const AdminLayout = () => {
                 <Sparkles className="h-5 w-5" />
               </div>
               <span className="font-bold text-lg bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                Admin Panel
+                Panneau d'Administration
               </span>
             </NavLink>
           </div>
