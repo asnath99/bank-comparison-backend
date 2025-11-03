@@ -20,12 +20,12 @@ type ApiListResponse<T> = { success: boolean; data: T[]; count?: number };
 type ApiItemResponse<T> = { success: boolean; data: T };
 
 export async function getBankCardsByBank(bankId: string): Promise<BankCard[]> {
-  const { data } = await api.get<ApiListResponse<BankCard>>(`/bankcards/banks/${bankId}/bank-cards`);
+  const { data } = await api.get<ApiListResponse<BankCard>>(`/banks/${bankId}/bank-cards`);
   return data.data;
 }
 
 
 export async function getBankCardsById(id: string): Promise<BankCard> {
-  const { data } = await api.get<ApiItemResponse<BankCard>>(`/bankcards/bank-cards/${id}`);
+  const { data } = await api.get<ApiItemResponse<BankCard>>(`/bank-cards/${id}`);
   return data.data;
 }

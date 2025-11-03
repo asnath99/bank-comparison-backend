@@ -13,7 +13,7 @@ require('dotenv').config();
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const [_admin, created] = await AdminUser.findOrCreate({
-      where: { email: 'admin@dokal.africa' },
+      where: { email: 'info@dokal-afica.com' },
       defaults: {
         password_hash: hashedPassword,
         role: 'super_admin',
@@ -22,9 +22,9 @@ require('dotenv').config();
     });
 
     if (created) {
-      console.log('Utilisateur administrateur "admin@dokal.africa" créé avec succès.');
+      console.log('Utilisateur administrateur "info@dokal-afica.com" créé avec succès.');
     } else {
-      console.log('Utilisateur administrateur "admin@dokal.africa" existe déjà.');
+      console.log('Utilisateur administrateur "info@dokal-afica.com" existe déjà.');
     }
   } catch (error) {
     console.error('Erreur lors de la création de l\'administrateur:', error);

@@ -41,9 +41,9 @@ export const deactivateAdminUser = async (id: number): Promise<void> => {
 };
 
 // Auth
-export const loginAdmin = async (credentials: LoginValues): Promise<{ token: string }> => {
+export const loginAdmin = async (credentials: LoginValues): Promise<{ token: string; user: { id: number; email: string; role: string } }> => {
   const response = await api.post('/admin/login', credentials);
-  return response.data;
+  return response.data.data;
 };
 
 // User Management
