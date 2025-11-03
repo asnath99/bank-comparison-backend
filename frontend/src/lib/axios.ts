@@ -28,10 +28,12 @@ api.interceptors.response.use(
     if (!error.response) {
       const p = window.location.pathname;
       if (!p.startsWith('/error/')) {
-        window.location.assign('/error/network'); // redirection 
+        window.location.assign('/error/network'); // redirection
       }
       return Promise.reject(error);
     }
     return Promise.reject(error);
   }
 );
+
+export default api;

@@ -29,19 +29,19 @@ export async function getAllAccountTypes(bankIds: number[] | 'ALL' | []): Promis
   if (Array.isArray(bankIds) && bankIds.length > 0) {
     params.bankIds = bankIds.join(',');
   }
-  const { data } = await api.get<ApiListResponse<string>>('/bankaccounts/bank-accounts', {
+  const { data } = await api.get<ApiListResponse<string>>('/bank-accounts', {
     params
   });
   return data.data ?? [];
 }
 
 export async function getBankAccountsByBank(bankId: string): Promise<BankAccount[]> {
-  const { data } = await api.get<ApiListResponse<BankAccount>>(`/bankaccounts/banks/${bankId}/bank-accounts`);
+  const { data } = await api.get<ApiListResponse<BankAccount>>(`/banks/${bankId}/bank-accounts`);
   return data.data;
 }
 
 export async function getBankAccountsById(id: string): Promise<BankAccount> {
-  const { data } = await api.get<ApiItemResponse<BankAccount>>(`/bankaccounts/bank-accounts/${id}`);
+  const { data } = await api.get<ApiItemResponse<BankAccount>>(`/bank-accounts/${id}`);
   return data.data;
 }
 
