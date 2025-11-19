@@ -12,6 +12,7 @@ const bankcardRoutes = require('./routes/bankcardRoutes');
 const bankproductRoutes = require('./routes/bankproductRoutes');
 const comparisonRoutes = require('./routes/comparisonRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const cardRoutes = require('./routes/cardRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ Sentry.init({
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(morgan('combined'));
+
 
 
 // Limite pour les API publiques (100 requêtes / 1 heure)
@@ -54,6 +56,7 @@ app.use('/api/public', publicApiLimiter);
 // pour les routes de connexion admin
 app.use('/api/admin/login', loginLimiter);
 
+app.use('/api', cardRoutes);
 
 // Routes API
 app.use('/api/banks', require('./routes/bankRoutes'));
