@@ -1,0 +1,31 @@
+# Node modules
+**/node_modules/
+**/dist/
+**/build/
+
+# Env files
+.env
+.env.*  
+**/.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+
+# IDE
+.vscode/
+.idea/
+
+# React
+frontend/.next/
+frontend/.cache/
+frontend/.env.local
+
+CLAUDE.md
+.claude/
