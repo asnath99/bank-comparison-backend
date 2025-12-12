@@ -196,7 +196,7 @@ const banksData = [
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log("✅ Connexion PostgreSQL réussie !");
+    console.log(" Connexion PostgreSQL réussie !");
     await sequelize.sync({ alter: true });
 
     for (const bankData of banksData) {
@@ -222,10 +222,10 @@ const banksData = [
       }
     }
 
-    console.log("✅ Toutes les données insérées avec succès !");
+    console.log(" Toutes les données insérées avec succès !");
     process.exit(0);
   } catch (err) {
-    console.error("❌ Erreur lors du seed :", err);
+    console.error(" Erreur lors du seed :", err);
     process.exit(1);
   }
 })();
