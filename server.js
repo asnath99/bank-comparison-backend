@@ -107,6 +107,16 @@ const PORT = process.env.PORT || 3000;
     await sequelize.sync({ alter: true });
     console.log(' Synchronisation des modèles terminée.');
 
+      // Log des variables d'environnement au démarrage
+      console.log("=== Environment Variables ===");
+      console.log("NODE_ENV:", process.env.NODE_ENV);
+      console.log("PORT:", process.env.PORT);
+      console.log("CLIENT_URL:", process.env.CLIENT_URL);
+      console.log("JWT_SECRET:", process.env.JWT_SECRET ? "set" : "missing");
+      console.log("DATABASE_URL:", process.env.DATABASE_URL ? "set" : "missing");
+      console.log("=============================");
+
+
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (err) {
     console.error(' Échec de connexion/synchronisation PostgreSQL:', err);
