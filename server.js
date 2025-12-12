@@ -71,7 +71,6 @@ app.use('/api/bankproducts', require('./routes/bankproductRoutes'));
 app.use('/api/comparison', require('./routes/comparisonRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
-app.get('/health', (req, res) => res.json({ ok: true }));
 
 // Route test Sentry
 app.get('/debug-sentry', (req, res) => {
