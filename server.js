@@ -78,6 +78,18 @@ app.get('/debug-sentry', (req, res) => {
   throw new Error('Test Sentry - erreur volontaire !');
 });
 
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "Backend Bank Comparison API is running 🚀" });
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    JWT_SECRET: process.env.JWT_SECRET ? "set" : "missing",
+    DATABASE_URL: process.env.DATABASE_URL ? "set" : "missing"
+  });
+});
+
 // Middleware d’erreurs générique
 app.use((err, req, res, next) => {
   console.error('Erreur non gérée :', err);

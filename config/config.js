@@ -7,7 +7,6 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-
     dialect: "postgres"
   },
 
@@ -17,11 +16,11 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-
-    dialect: 'postgres',
+    dialect: "postgres"
   },
+
   production: {
-    use_env_variable: "DATABASE_URL",   // 👉 Sequelize va lire directement DATABASE_URL
+    use_env_variable: "DATABASE_URL",
     dialect: "postgres",
     dialectOptions: {
       ssl: {
@@ -29,6 +28,5 @@ module.exports = {
         rejectUnauthorized: false
       }
     }
-
-  },
+  }
 };
