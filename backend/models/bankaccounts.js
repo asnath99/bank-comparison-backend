@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'banks',
         key: 'id'
-      }
+      },
+      
     },
     type: {
       type: DataTypes.STRING(100),

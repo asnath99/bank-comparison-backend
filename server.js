@@ -4,8 +4,9 @@ const cors = require('cors');
 const morgan = require('morgan');
 const Sentry = require('@sentry/node');
 const statusRoutes = require('./routes/statusRoutes');
-
 const rateLimit = require('express-rate-limit');
+
+const { sequelize } = require('./models');
 
 const bankRoutes = require('./routes/bankRoutes');
 const bankaccountRoutes = require('./routes/bankaccountRoutes');
@@ -70,6 +71,8 @@ app.use('/api/bankproducts', require('./routes/bankproductRoutes'));
 app.use('/api/comparison', require('./routes/comparisonRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
+app.get('/health', (req, res) => res.json({ ok: true }));
+
 // Route test Sentry
 app.get('/debug-sentry', (req, res) => {
   throw new Error('Test Sentry - erreur volontaire !');
@@ -83,4 +86,19 @@ app.use((err, req, res, next) => {
 
 // Démarrage serveur
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log(' Connexion à PostgreSQL réussie via Sequelize.');
+
+    // Option initiale pour créer/mettre à jour les tables au premier déploiement
+    //  Après la première exécution, remplace par: await sequelize.sync();
+    await sequelize.sync({ alter: true });
+    console.log(' Synchronisation des modèles terminée.');
+
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  } catch (err) {
+    console.error(' Échec de connexion/synchronisation PostgreSQL:', err);
+    process.exit(1);
+  }
+})();

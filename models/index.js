@@ -8,7 +8,7 @@ require('dotenv').config();
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = new Sequelize(
+/*const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
   process.env.DB_PASSWORD,
@@ -17,16 +17,24 @@ const sequelize = new Sequelize(
     dialect: 'postgres',
     port: process.env.DB_PORT,
     logging: false, // désactiver les logs SQL pour plus de clarté
+  }*/
+ const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: false,
+  protocol: "postgres",
+  dialectOptions: {
+    ssl: { require: true, rejectUnauthorized: false }
   }
+}
 );
 
 // Tester la connexion
 // sequelize.authenticate()
 //   .then(() => {
-//     console.log('✅ Connexion à PostgreSQL réussie via Sequelize.');
+//     console.log(' Connexion à PostgreSQL réussie via Sequelize.');
 //   })
 //   .catch(err => {
-//     console.error('❌ Erreur de connexion à PostgreSQL :', err);
+//     console.error(' Erreur de connexion à PostgreSQL :', err);
 //   });
 
 // Chargement automatique des modèles
